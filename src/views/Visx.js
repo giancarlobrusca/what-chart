@@ -9,8 +9,6 @@ export const Visx = ({ pokemons }) => {
   const [bulbasaurStats] = useStats(pokemons?.bulbasaur, "Bulbasaur");
   const [squirtleStats] = useStats(pokemons?.squirtle, "Squirtle");
 
-  const data = [charmanderStats, bulbasaurStats, squirtleStats];
-
   if (!charmanderStats | !bulbasaurStats | !squirtleStats) {
     return "Loading";
   }
