@@ -10,7 +10,7 @@ export const Nivo = ({ pokemons }) => (
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       innerPadding={10}
-      colors={{ scheme: "nivo" }}
+      colors={["#8bc34a", "#fdd835"]}
       labelTextColor={{ from: "color", modifiers: [["darker", 1.6]] }}
       groupMode="grouped"
       legends={[
