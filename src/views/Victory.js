@@ -1,5 +1,5 @@
 import React from "react";
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from "victory";
+import { VictoryAxis, VictoryBar, VictoryChart } from "victory";
 import styled from "styled-components";
 
 export const Victory = ({ pokemons }) => {
