@@ -1,21 +1,10 @@
-import { useStats } from "../hooks";
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from "recharts";
 import styled from "styled-components";
 
-export const Recharts = ({ pokemons, loading }) => {
-  const [charmanderStats] = useStats(pokemons?.charmander, "Charmander");
-  const [bulbasaurStats] = useStats(pokemons?.bulbasaur, "Bulbasaur");
-  const [squirtleStats] = useStats(pokemons?.squirtle, "Squirtle");
-
-  const data = [charmanderStats, bulbasaurStats, squirtleStats];
-
-  if (!charmanderStats | !bulbasaurStats | !squirtleStats) {
-    return "Loading";
-  }
-
+export const Recharts = ({ pokemons }) => {
   return (
     <Wrapper>
-      <BarChart width={730} height={500} data={data}>
+      <BarChart width={730} height={500} data={pokemons}>
         <XAxis dataKey="name" />
         <YAxis />
         <Legend verticalAlign="top" height={1} />
@@ -39,7 +28,7 @@ export const Recharts = ({ pokemons, loading }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 1080px;
   justify-content: center;
   align-items: center;
 `;

@@ -1,20 +1,9 @@
 import React from "react";
-import { useStats } from "../hooks";
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from "victory";
 import styled from "styled-components";
 
-export const Victory = ({ pokemons, loading }) => {
+export const Victory = ({ pokemons }) => {
   const [stat, setStat] = React.useState("hp");
-
-  const [charmanderStats] = useStats(pokemons?.charmander, "Charmander");
-  const [bulbasaurStats] = useStats(pokemons?.bulbasaur, "Bulbasaur");
-  const [squirtleStats] = useStats(pokemons?.squirtle, "Squirtle");
-
-  const data = [charmanderStats, bulbasaurStats, squirtleStats];
-
-  if (!charmanderStats | !bulbasaurStats | !squirtleStats) {
-    return "Loading";
-  }
 
   return (
     <Wrapper>
@@ -22,20 +11,24 @@ export const Victory = ({ pokemons, loading }) => {
         <button onClick={() => setStat("hp")}>HP</button>
         <button onClick={() => setStat("speed")}>Speed</button>
       </div>
-      <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 15 }}>
-        <VictoryAxis
-          tickValues={[1, 2, 3]}
-          tickFormat={["Charmander", "Bulbasaur", "Squirtle"]}
+      <VictoryChart domainPadding={{ x: 15 }}>
+        <VictoryAxis tickFormat={["Charmander", "Bulbasaur", "Squirtle"]} />
+        <VictoryAxis dependentAxis domain={[0, 70]} />
+        <VictoryBar
+          style={{
+            data: { fill: stat === "hp" ? "#8bc34a" : "#fdd835", width: 20 },
+          }}
+          data={pokemons}
+          x="name"
+          y={stat}
         />
-        <VictoryAxis dependentAxis />
-        <VictoryBar data={data} x="name" y={stat} />
       </VictoryChart>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 1080px;
   height: 500px;
 
   div {
